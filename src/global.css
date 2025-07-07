@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark base colors */
+    --background: 220 13% 2%; /* rgb(2, 2, 2) equivalent */
+    --surface: 220 13% 4%;
+    --surface-elevated: 220 13% 6%;
+    --foreground: 0 0% 100%; /* White text */
+
+    /* Card and container colors */
+    --card: 220 13% 4%;
+    --card-foreground: 0 0% 100%;
+
+    /* Interactive elements */
+    --popover: 220 13% 6%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Primary colors - white for buttons */
+    --primary: 0 0% 100%;
+    --primary-foreground: 220 13% 15%;
+
+    /* Secondary colors - purple accents */
+    --secondary: 270 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted text colors */
+    --muted: 220 13% 8%;
+    --muted-foreground: 220 9% 64%; /* rgb(163, 163, 163) equivalent */
+
+    /* Accent colors for highlights */
+    --accent: 270 50% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border and input colors */
+    --border: 220 13% 15%;
+    --input: 220 13% 15%;
+    --ring: 270 50% 50%;
+
+    /* Border radius */
+    --radius: 0.75rem;
+
+    /* Chat specific colors */
+    --chat-user-bg: 270 50% 40%;
+    --chat-bot-bg: 220 13% 8%;
+    --chat-input-bg: 220 13% 6%;
+
+    /* Gradient colors for scale.com style */
+    --gradient-purple: 270 100% 75%;
+    --gradient-blue: 240 100% 70%;
+    --gradient-pink: 320 100% 75%;
+    --gradient-yellow: 50 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      Arial,
+      sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(
+      50deg,
+      hsl(var(--gradient-purple)),
+      hsl(var(--gradient-blue)) 31.28%,
+      hsl(var(--gradient-pink)) 77.97%,
+      hsl(var(--gradient-yellow)) 95.64%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .message-enter {
+    animation: messageSlideIn 0.3s ease-out;
+  }
+
+  .typing-indicator {
+    animation: typingPulse 1.5s ease-in-out infinite;
+  }
+
+  .gradient-button {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-purple)),
+      hsl(var(--gradient-blue))
+    );
+    transition: all 0.2s ease;
+  }
+
+  .gradient-button:hover {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-blue)),
+      hsl(var(--gradient-pink))
+    );
+    transform: translateY(-1px);
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  @keyframes messageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes typingPulse {
+    0%,
+    60%,
+    100% {
+      opacity: 0.4;
+    }
+    30% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+  }
+}
