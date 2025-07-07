@@ -1,3 +1,5 @@
+import { ChatContainer } from "../components/chat";
+
 export default function Index() {
-  return <h1>Hello Dolado!</h1>;
+  return <ChatContainer />;
 }
