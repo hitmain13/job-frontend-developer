@@ -5,6 +5,7 @@ import { TypingIndicator } from "./typing-indicator";
 import { ChatInput } from "./chat-input";
 
 export const ChatContainer = () => {
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const { state, actions } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -13,20 +14,21 @@ export const ChatContainer = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [state.messages, state.isTyping]);
-
-  useEffect(() => {
     actions.startConversation();
-  }, [actions]);
+    if (inputRef?.current) inputRef.current.focus();
+  }, []);
 
-  const handleSendMessage = (content: string) => {
-    console.log("Mensagem enviada!", content);
+  const handleSendMessage = async (content: string) => {
+    await actions.sendUserMessage(content);
   };
 
   const handleQuickReply = async (text: string, value: string) => {
-    console.log("Resposta rápida, teste!", text, value);
+    await actions.sendUserMessage(text, value);
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [state.messages, state.isTyping]);
 
   return (
     <div className="flex flex-col h-screen bg-background">
@@ -39,7 +41,7 @@ export const ChatContainer = () => {
             <div>
               <h1 className="text-lg font-semibold text-foreground">Roberto</h1>
               <p className="text-sm text-muted-foreground">
-                Especialista em Marketplaces - Dolado, sempre do seu lado
+                Especialista em Marketplaces
               </p>
             </div>
           </div>
@@ -48,7 +50,7 @@ export const ChatContainer = () => {
             {state.messages.length > 0 && (
               <>
                 <button
-                  onClick={() => actions.downloadExport("conversation")}
+                  onClick={() => actions.downloadConversation("conversation")}
                   className="
                     px-3 py-2 text-sm rounded-lg border border-border
                     bg-surface hover:bg-surface-elevated transition-colors
@@ -71,12 +73,12 @@ export const ChatContainer = () => {
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                  <span className="hidden sm:inline">Conversa</span>
+                  <span className="hidden sm:inline">Exportar</span>
                 </button>
 
                 {actions.exportDiagnosis() && (
                   <button
-                    onClick={() => actions.downloadExport("diagnosis")}
+                    onClick={() => actions.downloadConversation("diagnosis")}
                     className="
                       px-3 py-2 text-sm rounded-lg border border-border
                       bg-surface hover:bg-surface-elevated transition-colors
@@ -111,7 +113,7 @@ export const ChatContainer = () => {
                 px-4 py-2 text-sm rounded-lg border border-border
                 bg-surface hover:bg-surface-elevated transition-colors
                 text-muted-foreground hover:text-foreground
-                focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50
+                focus:outline-none focus:ring-2
               "
             >
               Nova Conversa
@@ -128,7 +130,7 @@ export const ChatContainer = () => {
                 R
               </div>
               <h2 className="text-xl font-semibold gradient-text mb-2">
-                Bem-vindo ao Consultor Digital
+                Bem-vindo à Dolado!
               </h2>
               <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
                 Descubra como expandir para marketplaces sem conflitar com seus
@@ -142,6 +144,7 @@ export const ChatContainer = () => {
               key={message.id}
               message={message}
               onQuickReply={handleQuickReply}
+              currentMessage={state}
             />
           ))}
 
@@ -159,6 +162,7 @@ export const ChatContainer = () => {
         onSendMessage={handleSendMessage}
         disabled={state.isTyping}
         placeholder="Digite sua resposta..."
+        ref={inputRef}
       />
     </div>
   );

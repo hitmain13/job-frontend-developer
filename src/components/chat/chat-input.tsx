@@ -1,15 +1,17 @@
-import { useState, type KeyboardEvent } from "react";
+import { useState, type KeyboardEvent, type RefObject } from "react";
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  ref?: RefObject<HTMLTextAreaElement | null>;
 }
 
 export const ChatInput = ({
   onSendMessage,
   disabled = false,
   placeholder = "Digite sua mensagem...",
+  ...props
 }: ChatInputProps) => {
   const [message, setMessage] = useState("");
 
@@ -34,15 +36,14 @@ export const ChatInput = ({
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             placeholder={placeholder}
             disabled={disabled}
             rows={1}
             className="
               w-full px-4 py-3 rounded-xl resize-none
               bg-chat-input-bg border border-border
-              text-foreground placeholder-muted-foreground
-              focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50
+              text-foreground placeholder-muted-foreground focus:ring-2
               disabled:opacity-50 disabled:cursor-not-allowed
               transition-all duration-200
             "
@@ -50,6 +51,7 @@ export const ChatInput = ({
               minHeight: "48px",
               maxHeight: "120px",
             }}
+            {...props}
           />
         </div>
 

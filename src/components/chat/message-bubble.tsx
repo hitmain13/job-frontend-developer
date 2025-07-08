@@ -1,4 +1,4 @@
-import type { ChatMessage } from "../../types/chat";
+import type { ChatMessage, ConversationState } from "../../types/chat";
 import { QuickReplyButtons } from "./quick-reply-buttons";
 import { DiagnosisCard } from "./diagnosis-chat";
 import { NextStepsCard } from "./next-steps-card";
@@ -6,14 +6,20 @@ import { NextStepsCard } from "./next-steps-card";
 interface MessageBubbleProps {
   message: ChatMessage;
   onQuickReply: (reply: string, value: string) => void;
+  currentMessage: ConversationState;
 }
 
 export const MessageBubble = ({
   message,
   onQuickReply,
+  currentMessage,
 }: MessageBubbleProps) => {
   const isUser = message.type === "user";
-
+  const lastQuickMessage = [...currentMessage.messages]
+    .reverse()
+    .find(
+      (msg) => msg.quickReplies && msg.quickReplies.length > 0,
+    )?.quickReplies;
   return (
     <div
       className={`flex ${isUser ? "justify-end" : "justify-start"} mb-6 animate-message-slide-in`}
@@ -33,7 +39,7 @@ export const MessageBubble = ({
             px-4 py-3 rounded-2xl text-sm leading-relaxed
             ${
               isUser
-                ? "bg-chat-user-bg text-white rounded-br-sm"
+                ? "bg-gradient-purple-blue text-white rounded-br-sm"
                 : "bg-chat-bot-bg text-foreground rounded-bl-sm border border-border"
             }
           `}
@@ -61,6 +67,7 @@ export const MessageBubble = ({
             <QuickReplyButtons
               replies={message.quickReplies}
               onReply={onQuickReply}
+              disabled={lastQuickMessage !== message.quickReplies}
             />
           </div>
         )}

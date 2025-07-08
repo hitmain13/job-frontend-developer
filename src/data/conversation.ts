@@ -70,15 +70,11 @@ export const getMarketplaceQuestions = (
   profile: UserProfile,
   response: string,
 ): ConversationResponse => {
-  // Update profile based on previous responses
   const updatedProfile = { ...profile };
 
   if (["medium_company", "large_company", "enterprise"].includes(response)) {
     updatedProfile.companySize = response;
-  }
-
-  const responses: Record<string, ConversationResponse> = {
-    enterprise: {
+    return {
       message:
         "Excelente! Empresas do seu porte têm uma vantagem única. Já consideraram marketplaces como Mercado Livre, Amazon, ou B2W? Qual a principal barreira que veem?",
       quickReplies: [
@@ -98,19 +94,34 @@ export const getMarketplaceQuestions = (
           value: "brand_concerns",
         },
       ],
-      nextStage: "products",
-    },
-    channel_conflict: {
+      nextStage: "marketplace",
+    };
+  }
+
+  if (
+    [
+      "distributor_conflict",
+      "technical_knowledge",
+      "brand_concerns",
+      "channel_conflict",
+      "operational_complexity",
+      "roi_concerns",
+    ].includes(response)
+  ) {
+    return {
       message:
-        "Essa é a questão mais comum! A boa notícia: 87% das empresas que atendemos mantiveram seus canais tradicionais intactos. O segredo está na estratégia de segmentação. Que tipo de produtos vocês fabricam?",
+        "Essa é uma questão comum! A boa notícia: 87% das empresas que atendemos mantiveram seus canais tradicionais intactos. O segredo está na estratégia de segmentação. Que tipo de produtos vocês fabricam?",
       quickReplies: [
         { id: "1", text: "Bens de consumo/FMCG", value: "consumer_goods" },
         { id: "2", text: "Produtos industriais/B2B", value: "industrial" },
         { id: "3", text: "Casa e construção", value: "home_construction" },
       ],
       nextStage: "products",
-    },
-    b2b_channels: {
+    };
+  }
+
+  if (["b2b_channels", "retail_own", "mixed_channels"].includes(response)) {
+    return {
       message:
         "Canal tradicional sólido! O marketplace pode ser complementar, focando no consumidor final sem impactar seus distribuidores. Quantos SKUs aproximadamente vocês têm?",
       quickReplies: [
@@ -119,21 +130,19 @@ export const getMarketplaceQuestions = (
         { id: "3", text: "500+ SKUs", value: "large_catalog" },
       ],
       nextStage: "products",
-    },
-  };
+    };
+  }
 
-  return (
-    responses[response] || {
-      message:
-        "Entendi seu contexto. Para te dar o melhor direcionamento, que tipo de produtos sua empresa trabalha?",
-      quickReplies: [
-        { id: "1", text: "Bens de consumo", value: "consumer_goods" },
-        { id: "2", text: "Produtos industriais", value: "industrial" },
-        { id: "3", text: "Casa e construção", value: "home_construction" },
-      ],
-      nextStage: "products",
-    }
-  );
+  return {
+    message:
+      "Entendi seu contexto. Para te dar o melhor direcionamento, que tipo de produtos sua empresa trabalha?",
+    quickReplies: [
+      { id: "1", text: "Bens de consumo", value: "consumer_goods" },
+      { id: "2", text: "Produtos industriais", value: "industrial" },
+      { id: "3", text: "Casa e construção", value: "home_construction" },
+    ],
+    nextStage: "products",
+  };
 };
 
 export const getProductQuestions = (
@@ -232,17 +241,19 @@ export const processUserResponse = (
 ): ConversationResponse => {
   switch (stage) {
     case "welcome":
-      return getQualificationQuestions(userResponse);
+      return getWelcomeMessage();
     case "qualification":
-      return getMarketplaceQuestions(profile, userResponse);
+      return getQualificationQuestions(userResponse);
     case "marketplace":
-      return getProductQuestions(profile, userResponse);
+      return getMarketplaceQuestions(profile, userResponse);
     case "products":
-      return getDiagnosisQuestions();
+      return getProductQuestions(profile, userResponse);
     case "diagnosis":
       return getFinalDiagnosis(profile);
     case "result":
       return getFinalDoladoMessage();
+    case "final":
+      return getFinalDiagnosis(profile);
     default:
       return getWelcomeMessage();
   }

@@ -1,7 +1,7 @@
 import type { Diagnosis } from "../../types/chat";
 
 interface DiagnosisCardProps {
-  diagnosis: Diagnosis;
+  diagnosis?: Diagnosis;
 }
 
 export const DiagnosisCard = ({ diagnosis }: DiagnosisCardProps) => {
@@ -38,14 +38,16 @@ export const DiagnosisCard = ({ diagnosis }: DiagnosisCardProps) => {
           <h4 className="font-medium text-sm text-accent mb-1">
             ESTÁGIO ATUAL
           </h4>
-          <p className="text-foreground font-semibold">{diagnosis.stage}</p>
+          <p className="text-foreground font-semibold">{diagnosis?.stage}</p>
         </div>
 
         <div className="bg-background rounded-lg p-4">
           <h4 className="font-medium text-sm text-accent mb-1">
             POTENCIAL DE CRESCIMENTO
           </h4>
-          <p className="text-foreground font-semibold">{diagnosis.potential}</p>
+          <p className="text-foreground font-semibold">
+            {diagnosis?.potential}
+          </p>
         </div>
 
         <div className="bg-background rounded-lg p-4">
@@ -53,7 +55,7 @@ export const DiagnosisCard = ({ diagnosis }: DiagnosisCardProps) => {
             INSIGHTS ESPECÍFICOS
           </h4>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            {diagnosis.specificInsights}
+            {diagnosis?.specificInsights}
           </p>
         </div>
 
@@ -62,7 +64,7 @@ export const DiagnosisCard = ({ diagnosis }: DiagnosisCardProps) => {
             RECOMENDAÇÕES ESTRATÉGICAS
           </h4>
           <ul className="space-y-2">
-            {diagnosis.recommendations.map((rec, index) => (
+            {diagnosis?.recommendations.map((rec, index) => (
               <li key={index} className="flex items-start space-x-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                 <span className="text-sm text-muted-foreground leading-relaxed">

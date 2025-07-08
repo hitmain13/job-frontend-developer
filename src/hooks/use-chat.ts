@@ -5,7 +5,7 @@ import type {
   ConversationStage,
   UserProfile,
 } from "../types/chat";
-import { getWelcomeMessage } from "../data/conversation";
+import { processUserResponse } from "../data/conversation";
 
 const initialState: ConversationState = {
   stage: "welcome",
@@ -17,11 +17,13 @@ const initialState: ConversationState = {
 export const useChat = () => {
   const [state, setState] = useState<ConversationState>(initialState);
 
+  console.log("state:", state);
+
   const addMessage = useCallback(
     (message: Omit<ChatMessage, "id" | "timestamp">) => {
       const newMessage: ChatMessage = {
         ...message,
-        id: Math.random().toString(36).substr(2, 9),
+        id: Math.random().toString(36).substring(2, 9),
         timestamp: new Date(),
       };
 
@@ -50,32 +52,55 @@ export const useChat = () => {
     setState((prev) => ({ ...prev, stage }));
   }, []);
 
-  const startConversation = useCallback(async () => {
-    if (state.messages.length > 0) return;
+  const sendUserMessage = useCallback(
+    async (content: string, quickReplyValue?: string) => {
+      addMessage({
+        type: "user",
+        content,
+      });
 
-    setTyping(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      setTyping(true);
 
-    const welcomeResponse = getWelcomeMessage();
-    addMessage({
-      type: "bot",
-      content: welcomeResponse.message,
-      quickReplies: welcomeResponse.quickReplies,
-    });
+      await new Promise((resolve) =>
+        setTimeout(resolve, 1000 + Math.random() * 1000),
+      );
 
-    if (welcomeResponse.nextStage) {
-      setStage(welcomeResponse.nextStage);
-    }
+      const response = processUserResponse(
+        state.stage,
+        quickReplyValue || content.toLowerCase(),
+        state.userProfile,
+      );
 
-    setTyping(false);
-  }, [state.messages.length, addMessage, setStage, setTyping]);
+      const botMessage = addMessage({
+        type: "bot",
+        content: response.message,
+        quickReplies: response.quickReplies,
+        diagnosis: response.diagnosis,
+        nextSteps: response.nextSteps,
+      });
+
+      if (response.nextStage) {
+        setStage(response.nextStage);
+      }
+
+      setTyping(false);
+
+      return botMessage;
+    },
+    [state.stage, state.userProfile, addMessage, setTyping, setStage],
+  );
 
   const resetConversation = useCallback(() => {
     setState(initialState);
   }, []);
 
+  const startConversation = useCallback(async () => {
+    resetConversation();
+
+    setTyping(false);
+  }, [resetConversation, setTyping]);
+
   const exportConversation = useCallback(() => {
-    // Export messages in the requested format
     const exportData = state.messages.map((message) => ({
       id: `${Date.now()}-${message.type}`,
       text: message.content,
@@ -88,7 +113,6 @@ export const useChat = () => {
   }, [state.messages]);
 
   const exportDiagnosis = useCallback(() => {
-    // Find the message with diagnosis
     const diagnosisMessage = state.messages.find(
       (msg) => msg.diagnosis && msg.nextSteps,
     );
@@ -103,7 +127,7 @@ export const useChat = () => {
     };
   }, [state.messages]);
 
-  const downloadExport = useCallback(
+  const downloadConversation = useCallback(
     (type: "conversation" | "diagnosis") => {
       const data =
         type === "conversation" ? exportConversation() : exportDiagnosis();
@@ -127,12 +151,13 @@ export const useChat = () => {
   return {
     state,
     actions: {
+      sendUserMessage,
       startConversation,
       resetConversation,
       updateUserProfile,
       exportConversation,
       exportDiagnosis,
-      downloadExport,
+      downloadConversation,
     },
   };
 };

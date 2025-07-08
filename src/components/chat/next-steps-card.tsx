@@ -75,7 +75,7 @@ export const NextStepsCard = ({ nextSteps, onAction }: NextStepsCardProps) => {
               />
             </svg>
             <p className="text-sm text-orange-200 leading-relaxed">
-              <span className="font-medium">⚡ Urgência Estratégica:</span>{" "}
+              <span className="font-medium">⚡ Urgência estratégica:</span>{" "}
               {nextSteps.urgency}
             </p>
           </div>
