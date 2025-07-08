@@ -16,43 +16,43 @@ const mockDiagnosis: Diagnosis = {
 
 describe("DiagnosisCard", () => {
   it("renders without crashing", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    expect(screen.getByText("Diagnóstico Personalizado")).toBeInTheDocument();
+    const { getByText } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    expect(getByText("Diagnóstico Personalizado")).toBeInTheDocument();
   });
 
   it("displays stage correctly", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    expect(screen.getByText("ESTÁGIO ATUAL")).toBeInTheDocument();
-    expect(screen.getByText("Initial Growth")).toBeInTheDocument();
+    const { getByText } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    expect(getByText("ESTÁGIO ATUAL")).toBeInTheDocument();
+    expect(getByText("Initial Growth")).toBeInTheDocument();
   });
 
   it("displays potential correctly", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    expect(screen.getByText("POTENCIAL DE CRESCIMENTO")).toBeInTheDocument();
-    expect(screen.getByText("High")).toBeInTheDocument();
+    const { getByText } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    expect(getByText("POTENCIAL DE CRESCIMENTO")).toBeInTheDocument();
+    expect(getByText("High")).toBeInTheDocument();
   });
 
   it("displays specific insights correctly", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    expect(screen.getByText("INSIGHTS ESPECÍFICOS")).toBeInTheDocument();
+    const { getByText } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    expect(getByText("INSIGHTS ESPECÍFICOS")).toBeInTheDocument();
     expect(
-      screen.getByText("Strong market fit with opportunities for expansion."),
+      getByText("Strong market fit with opportunities for expansion."),
     ).toBeInTheDocument();
   });
 
   it("displays all recommendations", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    expect(screen.getByText("RECOMENDAÇÕES ESTRATÉGICAS")).toBeInTheDocument();
+    const { getByText } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    expect(getByText("RECOMENDAÇÕES ESTRATÉGICAS")).toBeInTheDocument();
     expect(
-      screen.getByText("Focus on customer acquisition"),
+      getByText("Focus on customer acquisition"),
     ).toBeInTheDocument();
-    expect(screen.getByText("Optimize marketing channels")).toBeInTheDocument();
-    expect(screen.getByText("Expand product offerings")).toBeInTheDocument();
+    expect(getByText("Optimize marketing channels")).toBeInTheDocument();
+    expect(getByText("Expand product offerings")).toBeInTheDocument();
   });
 
   it("renders correct number of recommendation items", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    const recommendationItems = screen.getAllByRole("listitem");
+    const { getAllByRole } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    const recommendationItems = getAllByRole("listitem");
     expect(recommendationItems).toHaveLength(
       mockDiagnosis.recommendations.length,
     );
@@ -63,16 +63,15 @@ describe("DiagnosisCard", () => {
       ...mockDiagnosis,
       recommendations: [],
     };
-    render(<DiagnosisCard diagnosis={emptyRecommendationsDiagnosis} />);
-    expect(screen.getByText("RECOMENDAÇÕES ESTRATÉGICAS")).toBeInTheDocument();
-    const recommendationItems = screen.queryAllByRole("listitem");
+    const { getByText, queryAllByRole } = render(<DiagnosisCard diagnosis={emptyRecommendationsDiagnosis} />);
+    expect(getByText("RECOMENDAÇÕES ESTRATÉGICAS")).toBeInTheDocument();
+    const recommendationItems = queryAllByRole("listitem");
     expect(recommendationItems).toHaveLength(0);
   });
 
   it("renders SVG icon", () => {
-    render(<DiagnosisCard diagnosis={mockDiagnosis} />);
-    const svgElement =
-      screen.getByTestId("svg-icon") || document.querySelector("svg");
+    const { getByTestId } = render(<DiagnosisCard diagnosis={mockDiagnosis} />);
+    const svgElement = getByTestId("svg-icon");
     expect(svgElement).toBeInTheDocument();
   });
 });
