@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,45 +19,45 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        surface: "hsl(var(--surface))",
-        "surface-elevated": "hsl(var(--surface-elevated))",
+        border: "hsl(var(--border))", // azul claro
+        input: "hsl(var(--input))", // azul claro
+        ring: "hsl(var(--ring))", // azul principal
+        background: "hsl(var(--background))", // azul muito claro
+        foreground: "hsl(var(--foreground))", // azul principal
+        surface: "hsl(var(--surface))", // azul muito claro
+        "surface-elevated": "hsl(var(--surface-elevated))", // quase branco
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--primary))", // azul principal
+          foreground: "hsl(var(--primary-foreground))", // branco
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(var(--secondary))", // azul mais escuro
+          foreground: "hsl(var(--secondary-foreground))", // branco
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(var(--muted))", // azul bem claro
+          foreground: "hsl(var(--muted-foreground))", // azul acinzentado
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--accent))", // azul principal
+          foreground: "hsl(var(--accent-foreground))", // branco
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsl(var(--popover))", // azul muito claro
+          foreground: "hsl(var(--popover-foreground))", // azul principal
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(var(--card))", // branco
+          foreground: "hsl(var(--card-foreground))", // azul principal
         },
         chat: {
-          "user-bg": "hsl(var(--chat-user-bg))",
-          "bot-bg": "hsl(var(--chat-bot-bg))",
-          "input-bg": "hsl(var(--chat-input-bg))",
+          "user-bg": "hsl(var(--chat-user-bg))", // azul principal
+          "bot-bg": "hsl(var(--chat-bot-bg))", // azul claro
+          "input-bg": "hsl(var(--chat-input-bg))", // branco
         },
       },
       borderRadius: {
@@ -62,11 +67,11 @@ export default {
       },
       backgroundImage: {
         "gradient-scale":
-          "linear-gradient(50deg, hsl(var(--gradient-purple)), hsl(var(--gradient-blue)) 31.28%, hsl(var(--gradient-pink)) 77.97%, hsl(var(--gradient-yellow)) 95.64%)",
+          "linear-gradient(50deg, hsl(var(--gradient-purple)), hsl(var(--gradient-blue)) 31.28%, hsl(var(--gradient-pink)) 77.97%, hsl(var(--gradient-yellow)) 95.64%)", // tons de azul e branco
         "gradient-purple-blue":
-          "linear-gradient(135deg, hsl(var(--gradient-purple)), hsl(var(--gradient-blue)))",
-        "gradient-blue-pink":
-          "linear-gradient(135deg, hsl(var(--gradient-blue)), hsl(var(--gradient-pink)))",
+          "linear-gradient(135deg, hsl(var(--gradient-purple)), hsl(var(--gradient-blue)))", // azul principal para azul médio
+        "gradient-blue-white":
+          "linear-gradient(135deg, hsl(var(--gradient-blue)), hsl(var(--gradient-white)))", // azul médio para branco
       },
       keyframes: {
         "message-slide-in": {

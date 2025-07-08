@@ -28,7 +28,7 @@
 
     /* Muted text colors */
     --muted: 220 13% 8%;
-    --muted-foreground: 220 9% 64%; /* rgb(163, 163, 163) equivalent */
+    --muted-foreground: 220 9% 64%;
 
     /* Accent colors for highlights */
     --accent: 270 50% 40%;
@@ -40,8 +40,8 @@
 
     /* Border and input colors */
     --border: 220 13% 15%;
-    --input: 220 13% 15%;
-    --ring: 270 50% 50%;
+    --input: 213 60% 80%;
+    --ring: 213 76% 43%;
 
     /* Border radius */
     --radius: 0.75rem;
@@ -51,11 +51,12 @@
     --chat-bot-bg: 220 13% 8%;
     --chat-input-bg: 220 13% 6%;
 
-    /* Gradient colors for scale.com style */
-    --gradient-purple: 270 100% 75%;
-    --gradient-blue: 240 100% 70%;
-    --gradient-pink: 320 100% 75%;
-    --gradient-yellow: 50 100% 70%;
+    /* Gradientes em tons de azul */
+    --gradient-purple: 213 76% 43%; /* Azul principal */
+    --gradient-blue: 213 60% 60%; /* Azul médio */
+    --gradient-pink: 213 60% 95%; /* Azul claro (substituindo rosa) */
+    --gradient-yellow: 0 0% 100%; /* Branco (substituindo amarelo) */
+    --gradient-white: 0 0% 100%; /* Branco */
   }
 }
 
