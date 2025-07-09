@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { ChatMessages } from "./chat-messages";
+import { ChatMessages } from "../../components/chat/chat-messages";
 import { describe, expect, it, vi } from "vitest";
-import type { ConversationState, ChatMessage } from "../../types/chat";
+import type { ConversationState, ChatMessage } from "../../../types/chat";
 
 describe("ChatMessages", () => {
   it("renders ChatEmptyState when there are no messages and isTyping is false", () => {

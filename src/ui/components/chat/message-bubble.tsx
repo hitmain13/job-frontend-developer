@@ -1,4 +1,4 @@
-import type { ChatMessage, ConversationState } from "../../types/chat";
+import type { ChatMessage, ConversationState } from "../../../types/chat";
 import { QuickReplyButtons } from "./quick-reply-buttons";
 import { DiagnosisCard } from "./diagnosis-chat";
 import { NextStepsCard } from "./next-steps-card";

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { ChatContainer } from "./chat-container";
+import { ChatContainer } from "../../components/chat/chat-container";
 
 describe("ChatContainer", () => {
   beforeEach(() => {
@@ -49,13 +49,6 @@ const mockResetConversation = vi.fn();
 const mockDownloadConversation = vi.fn();
 const mockExportDiagnosis = vi.fn().mockReturnValue(null);
 const mockScrollToBottom = vi.fn();
-
-const baseMessage = {
-  id: "1",
-  type: "user",
-  content: "Hello!",
-  timestamp: new Date(),
-};
 
 const mockUseChatReturn = {
   state: {

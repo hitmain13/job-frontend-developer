@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { QuickReplyButtons } from "./quick-reply-buttons";
-import type { QuickReply } from "../../types/chat";
+import { QuickReplyButtons } from "../../components/chat/quick-reply-buttons";
+import type { QuickReply } from "../../../types/chat";
 
 describe("QuickReplyButtons", () => {
   const mockReplies: QuickReply[] = [
@@ -15,7 +15,9 @@ describe("QuickReplyButtons", () => {
     render(<QuickReplyButtons replies={mockReplies} onReply={mockOnReply} />);
 
     mockReplies.forEach((reply) => {
-      expect(screen.getByRole("button", { name: reply.text })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: reply.text }),
+      ).toBeInTheDocument();
     });
   });
 

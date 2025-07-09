@@ -4,8 +4,8 @@ import type {
   ChatMessage,
   ConversationStage,
   UserProfile,
-} from "../types/chat";
-import { processUserResponse } from "../data/conversation";
+} from "../../types/chat";
+import { processUserResponse } from "../../data/conversation";
 
 const initialState: ConversationState = {
   stage: "welcome",

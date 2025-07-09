@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { DiagnosisCard } from "./diagnosis-chat";
-import type { Diagnosis } from "../../types/chat";
+import { DiagnosisCard } from "../../components/chat/diagnosis-chat";
+import type { Diagnosis } from "../../../types/chat";
 
 describe("DiagnosisCard", () => {
   it("renders without crashing", () => {

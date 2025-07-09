@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import * as convoModule from "../data/conversation";
-import { useChat } from "./use-chat";
-import type { ConversationResponse } from "../types/chat";
+import * as convoModule from "../../../data/conversation";
+import { useChat } from "../../hooks/use-chat";
+import type { ConversationResponse } from "../../../types/chat";
 
 describe("useChat", () => {
   it("should initialize with default state", () => {
