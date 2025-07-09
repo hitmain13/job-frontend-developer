@@ -54,13 +54,20 @@ Dei uma boa lapidada no fluxo. Algumas ideias:
 job-frontend-developer/
 ├── public/
 ├── src/
+│   └── ui/
+│       ├── components/
+│       │   └── chat/
+│       └── hooks/
+│   ├── data/conversation.ts
+│   ├── helpers/classnames.ts
+│   ├── pages/index.tsx
+│   ├── routes/app.tsx
+│   ├── tests/
+│   │   ├── components/
+│   │   └── hooks/
+│   ├── types/chat.ts
 │   ├── App.tsx
 │   ├── global.css
-│   ├── components/chat/
-│   ├── data/conversation.ts
-│   ├── hooks/use-chat.ts
-│   ├── types/chat.ts
-│   ├── ui/components/chat/
 │   └── ...
 ├── package.json
 ├── tailwind.config.ts
