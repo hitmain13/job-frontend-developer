@@ -14,6 +14,8 @@ export const DiagnosisCard = ({ diagnosis }: DiagnosisCardProps) => {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            role="img"
+            aria-label="Diagnosis Icon"
           >
             <path
               strokeLinecap="round"
