@@ -1,4 +1,8 @@
-export const TypingIndicator = () => {
+export const TypingIndicator = ({
+  label = "Roberto está digitando...",
+}: {
+  label?: string;
+}) => {
   return (
     <div className="flex items-center space-x-2 p-4 bg-chat-bot-bg rounded-2xl rounded-bl-sm max-w-[200px] animate-message-slide-in">
       <div className="flex space-x-1">
@@ -15,9 +19,7 @@ export const TypingIndicator = () => {
           style={{ animationDelay: "300ms" }}
         />
       </div>
-      <span className="text-sm text-muted-foreground">
-        Roberto está digitando...
-      </span>
+      <span className="text-sm text-muted-foreground">{label}</span>
     </div>
   );
 };
