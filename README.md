@@ -1,10 +1,15 @@
 # Dolado Frontend Challenge
 
-Antes de explicar o projeto, por quê não acessar à página publicada? Só clicar aqui: https://dolado-matsumoto.netlify.app/
-
 ## O Desafio
 
 Fala! Que bom que chegou aqui :) Esse desafio foi uma imersão massa no universo Dolado. A ideia era transformar um formulário frio em uma conversa de verdade, tipo bate-papo com um consultor que manja do assunto. A missão era: criar um chatbot que fizesse sentido, alguém como diretor comercial que nunca vendeu online, entender que marketplace é sim uma boa opção
+
+Antes de explicar o projeto, por quê não acessar à página publicada? Só clicar aqui: https://dolado-matsumoto.netlify.app/
+
+## Imagem demo do projeto
+Um breve spoiler do que verá ao acessar o projeto deployado!
+
+![image](https://github.com/user-attachments/assets/58c9c10a-977d-4131-af00-73b7f9248b0a)
 
 ---
 
@@ -112,6 +117,9 @@ npm run test
 ```
 
 No momento, temos **55 testes** passando em **12 arquivos** ;)
+
+![image](https://github.com/user-attachments/assets/c5e0d62e-d0ba-4a8f-adc7-f00ff43a2674)
+
 
 ---
 
