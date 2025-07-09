@@ -1,6 +1,6 @@
+import { TypingIndicator } from "@/ui/components";
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { TypingIndicator } from "../../components/chat/typing-indicator";
 
 describe("TypingIndicator", () => {
   it("renders without crashing", () => {

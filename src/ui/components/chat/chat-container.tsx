@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { useChat } from "../../hooks/use-chat";
 import { ChatHeader } from "./chat-header";
 import { ChatMessages } from "./chat-messages";
 import { ChatInput } from "./chat-input";
-import { useScrollToBottom } from "../../hooks/use-scroll-bottom";
+import { useChat } from "@/ui/hooks/use-chat";
+import { useScrollToBottom } from "@/ui/hooks/use-scroll-bottom";
 
 export const ChatContainer = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import { useScrollToBottom } from "../../hooks/use-scroll-bottom";
+import { useScrollToBottom } from "@/ui/hooks/use-scroll-bottom";
 
 describe("useScrollToBottom", () => {
   it("should initialize ref as null", () => {

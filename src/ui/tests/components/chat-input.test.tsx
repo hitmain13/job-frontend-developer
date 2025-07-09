@@ -1,6 +1,6 @@
+import { ChatInput } from "@/ui/components";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { ChatInput } from "../../components/chat/chat-input";
 
 describe("ChatInput", () => {
   it("renders a textarea with placeholder", () => {

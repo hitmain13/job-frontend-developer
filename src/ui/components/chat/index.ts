@@ -1,1 +1,10 @@
 export { ChatContainer } from "./chat-container";
+export * from "./chat-empty-state";
+export * from "./chat-header";
+export * from "./chat-input.tsx";
+export * from "./chat-messages.tsx";
+export * from "./diagnosis-chat.tsx";
+export * from "./message-bubble.tsx";
+export * from "./next-steps-card.tsx";
+export * from "./quick-reply-buttons.tsx";
+export * from "./typing-indicator.tsx";

@@ -1,6 +1,6 @@
+import { ChatEmptyState } from "@/ui/components";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { ChatEmptyState } from "../../components/chat/chat-empty-state";
 
 describe("ChatEmptyState component", () => {
   it("renders the circular icon with letter R", () => {

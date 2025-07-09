@@ -1,11 +1,11 @@
-import { useState, useCallback } from "react";
+import { processUserResponse } from "@/data/conversation";
 import type {
-  ConversationState,
   ChatMessage,
   ConversationStage,
+  ConversationState,
   UserProfile,
-} from "../../types/chat";
-import { processUserResponse } from "../../data/conversation";
+} from "@/types/chat";
+import { useState, useCallback } from "react";
 
 const initialState: ConversationState = {
   stage: "welcome",

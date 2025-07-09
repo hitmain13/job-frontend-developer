@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import * as convoModule from "../../../data/conversation";
+import * as conversationModule from "@/data/conversation";
 import { useChat } from "../../hooks/use-chat";
 import type { ConversationResponse } from "../../../types/chat";
 
@@ -12,7 +12,7 @@ describe("useChat", () => {
   });
 
   it("should add user and bot messages when sendUserMessage is called", async () => {
-    vi.spyOn(convoModule, "processUserResponse").mockReturnValue(
+    vi.spyOn(conversationModule, "processUserResponse").mockReturnValue(
       mockResponse as unknown as ConversationResponse,
     );
 

@@ -1,6 +1,6 @@
+import { NextStepsCard } from "@/ui/components";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { NextStepsCard } from "../../components/chat/next-steps-card";
 
 const mockNextSteps = {
   message: "Here are the recommended next steps.",

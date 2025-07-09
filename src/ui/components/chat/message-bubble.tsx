@@ -1,7 +1,7 @@
-import type { ChatMessage, ConversationState } from "../../../types/chat";
 import { QuickReplyButtons } from "./quick-reply-buttons";
 import { DiagnosisCard } from "./diagnosis-chat";
 import { NextStepsCard } from "./next-steps-card";
+import type { ChatMessage, ConversationState } from "@/types/chat";
 
 interface MessageBubbleProps {
   message: ChatMessage;

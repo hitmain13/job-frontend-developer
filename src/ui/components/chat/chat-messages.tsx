@@ -1,8 +1,8 @@
 import { MessageBubble } from "./message-bubble";
 import { TypingIndicator } from "./typing-indicator";
 import { ChatEmptyState } from "./chat-empty-state";
-import type { ConversationState } from "../../../types/chat";
 import type { RefObject } from "react";
+import type { ConversationState } from "@/types/chat";
 
 interface ChatMessagesProps {
   state: ConversationState;

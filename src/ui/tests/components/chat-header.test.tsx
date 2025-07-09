@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { ChatHeader } from "../../components/chat/chat-header";
+import { ChatHeader } from "@/ui/components";
 
 describe("ChatHeader", () => {
   it("renders the header with default info", () => {

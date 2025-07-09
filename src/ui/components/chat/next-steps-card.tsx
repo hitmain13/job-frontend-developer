@@ -1,4 +1,4 @@
-import type { NextSteps } from "../../../types/chat";
+import type { NextSteps } from "@/types/chat";
 
 interface NextStepsCardProps {
   nextSteps: NextSteps;

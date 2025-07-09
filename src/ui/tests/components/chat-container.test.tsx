@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { ChatContainer } from "../../components/chat/chat-container";
+import { ChatContainer } from "@/ui/components";
 
 describe("ChatContainer", () => {
   beforeEach(() => {

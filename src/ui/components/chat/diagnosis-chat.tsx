@@ -1,4 +1,4 @@
-import type { Diagnosis } from "../../../types/chat";
+import type { Diagnosis } from "@/types/chat";
 
 interface DiagnosisCardProps {
   diagnosis?: Diagnosis;
