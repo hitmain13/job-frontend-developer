@@ -229,9 +229,24 @@ export const getFinalDoladoMessage = (): ConversationResponse => ({
     "Antes de finalizarmos, quero que conheça a Dolado - somos especialistas em ajudar empresas consolidadas como a sua a expandir para marketplaces de forma estratégica e sem conflitos. Já acompanhamos mais de 200 empresas nessa jornada, criando canais digitais de milhões sem canibalizarizar operações tradicionais. Que tal descobrir como podemos acelerar seus resultados digitais?",
   quickReplies: [
     { id: "1", text: "Quero conhecer a Dolado", value: "know_dolado" },
-    { id: "2", text: "Enviar diagnóstico por email", value: "send_email" },
     { id: "3", text: "Finalizar conversa", value: "finish" },
   ],
+  nextStage: "contact",
+});
+
+export const sendContactInformations = (): ConversationResponse => ({
+  message: `Nosso sistema já está processando este diagnóstico e em breve entraremos em contato.
+    Caso prefira, vocÊ pode baixar o diagnóstico ou a nossa conversa no botão acima e nos enviar diretamente.
+    Isso pode ser feito através do WhatsApp (11) 91234-5678 ou através do e-mail fabio.matsumoto@dolado.com que o nosso especialista atenderá teu caso específico.`,
+  quickReplies: [
+    { id: "1", text: "Ok! Vou chamar no Zap", value: "whatsapp" },
+    { id: "2", text: "Vou mandar o e-mail!", value: "email" },
+  ],
+  nextStage: "bye",
+});
+
+export const sendByeMessage = (): ConversationResponse => ({
+  message: "Até logo! 👋",
 });
 
 export const processUserResponse = (
@@ -251,9 +266,13 @@ export const processUserResponse = (
     case "diagnosis":
       return getFinalDiagnosis(profile);
     case "result":
-      return getFinalDoladoMessage();
-    case "final":
       return getFinalDiagnosis(profile);
+    case "final":
+      return getFinalDoladoMessage();
+    case "contact":
+      return sendContactInformations();
+    case "bye":
+      return sendByeMessage();
     default:
       return getWelcomeMessage();
   }

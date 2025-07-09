@@ -17,8 +17,6 @@ const initialState: ConversationState = {
 export const useChat = () => {
   const [state, setState] = useState<ConversationState>(initialState);
 
-  console.log("state:", state);
-
   const addMessage = useCallback(
     (message: Omit<ChatMessage, "id" | "timestamp">) => {
       const newMessage: ChatMessage = {

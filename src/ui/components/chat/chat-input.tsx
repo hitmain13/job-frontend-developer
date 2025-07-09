@@ -13,7 +13,9 @@ export const ChatInput = ({
   placeholder = "Digite sua mensagem...",
   ...props
 }: ChatInputProps) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(
+    "Oi! 👋 Eu gostaria de entender mais em como ampliar os canais digitais da minha companhia!",
+  );
 
   const handleSend = () => {
     if (message.trim() && !disabled) {
@@ -31,8 +33,8 @@ export const ChatInput = ({
 
   return (
     <div className="border-t border-border bg-background p-4">
-      <div className="flex items-end space-x-3 max-w-4xl mx-auto">
-        <div className="flex-1 relative">
+      <div className="flex space-x-3 max-w-4xl mx-auto">
+        <div className="flex-1 flex items-center">
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -68,7 +70,7 @@ export const ChatInput = ({
           "
         >
           <svg
-            className="w-5 h-5"
+            className="w-5 h-5 transform rotate-90"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

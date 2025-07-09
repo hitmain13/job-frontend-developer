@@ -34,7 +34,9 @@ export type ConversationStage =
   | "products"
   | "diagnosis"
   | "result"
-  | "final";
+  | "final"
+  | "contact"
+  | "bye";
 
 export interface UserProfile {
   companySize?: string;

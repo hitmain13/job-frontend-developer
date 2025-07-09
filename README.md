@@ -152,7 +152,7 @@ Para facilitar o desenvolvimento, fornecemos abaixo exemplos de respostas que o 
   "nextSteps": {
     "message": "Que tal uma conversa estratégica com nosso especialista em grandes contas? Ele já ajudou indústrias similares a criar canais digitais de R$ 20-50mi sem nenhum conflito. Posso agendar?",
     "options": ["Sim, quero conversa estratégica", "Manda um case similar primeiro"],
-    "urgency": "Seus concorrentes já estão se movimentando - quem sair na frente vai dominar o digital no seu segmento"
+    "urgency": "seus concorrentes já estão se movimentando - quem sair na frente vai dominar o digital no seu segmento"
   }
 }
 ```
