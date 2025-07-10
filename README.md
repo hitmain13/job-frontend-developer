@@ -26,12 +26,13 @@ Desde o início, quis que o código fosse legível e gostoso de manter. Tipo aqu
 
 ### Escolhas tecnicas
 
+- **Next.js 15 - App Router**
 - **React + Hooks**
 - **TypeScript**
 - **Tailwind CSS**
 - **useChat** pra centralizar o estado da conversa
 
-Obs.: caridosos avaliadores, aqui eu vacilei, confesso... :( Só no final da entrega que fui perceber que o Next.js é um requisito. Mas, posso converter esse projeto em Next.js 15 através de App Router ou até mesmo Page Router, não seria demorado.
+~Obs.: caridosos avaliadores, aqui eu vacilei, confesso... :( Só no final da entrega que fui perceber que o Next.js é um requisito. Mas, posso converter esse projeto em Next.js 15 através de App Router ou até mesmo Page Router, não seria demorado.~
 
 ---
 
