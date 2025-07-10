@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useRef } from "react";
 import { ChatHeader } from "./chat-header";
 import { ChatMessages } from "./chat-messages";
