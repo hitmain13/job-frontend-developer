@@ -1,4 +1,4 @@
-export { ChatContainer } from "./chat-container";
+export * from "./chat-container";
 export * from "./chat-empty-state";
 export * from "./chat-header";
 export * from "./chat-input.tsx";

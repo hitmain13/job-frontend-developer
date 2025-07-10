@@ -1,3 +1,4 @@
+"use client"
 import { useState, type KeyboardEvent, type RefObject } from "react";
 
 interface ChatInputProps {
