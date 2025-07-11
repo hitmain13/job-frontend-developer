@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://dolado-matsumoto.vercel.app/:splat"
+  status = 301
+  force = true
